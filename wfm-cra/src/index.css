@@ -8,13 +8,14 @@ body {
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal; */
-  color: #808080;
+  color: #555;
 
   --root-bg-color: #e2c663;
   --black: #373737;
-  --dark-grey: #585858;
-  --mid-grey: #6a6a6a;
-  --grey: #808080;
+  --dark-grey: #444;
+  --mid-grey: #555;
+  --grey: #666;
+  --light-grey: #777;
   --activity-calls: #9B51E0;
   --yellowish-brown: #9f7a00;
   --gold: #ffcd29;

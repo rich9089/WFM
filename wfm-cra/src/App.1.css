@@ -7,6 +7,9 @@
   font-stretch: normal;
   line-height: 2.5rem;
   letter-spacing: normal;
+  color: var(--grey);
+}
+.title.active {
   color: var(--black);
 }
 
@@ -15,7 +18,7 @@
 .app {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 70px 1fr 45px;
+  grid-template-rows: 70px 1fr 55px;
   /* height: calc(100vh - 30px); */
   /* width: calc(100vw - 30px); */
   height: 100vh;
@@ -34,16 +37,23 @@ header, main, footer {
 header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 main {
-  margin-top: -10px;
+  /* margin-top: -10px; */
+  /* margin-left: 20px; */
+  padding-top: 0;
+  padding-bottom: 0;
+  /* margin-right: 20px; */
+  margin-bottom: 10px;
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0.25); */
   /* padding-top: 0; */
 }
 
 footer {
-  background-color: rgba(0, 0, 0, 0.03);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, 0.03); */
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0.25); */
   /* background: linear-gradient(
     rgba(0, 0, 0, 0.1), 
     rgba(0, 0, 0, 0.1)
@@ -91,6 +101,17 @@ footer .activity-now-and-next .activity-now .activity-name {
   font-size: 1.1rem;
 }
 
+nav ul li {
+  margin-right: 25px;
+}
+.toolbar {
+  color: var(--mid-grey);
+  font-size: 1.5rem;
+}
+.toolbar i {
+  margin-left: 20px;
+}
+
 .all-leaderboards {
   display: grid;
   height: 100%;
@@ -105,35 +126,59 @@ footer .activity-now-and-next .activity-now .activity-name {
   grid-template-columns: 100%;
   grid-auto-columns: 100%;
 }
+.all-leaderboards.max-2,
+.all-leaderboards.max-3,
+.all-leaderboards.max-4,
+.all-leaderboards.max-5,
+.all-leaderboards.max-6 {
+  /* https://stackoverflow.com/a/50137287 */
+  grid-template-columns: 93%;
+  grid-auto-columns: 93%;
+}
 @media only screen and (min-width: 40.063em) {
   /* min-width 641px, medium screens */
   
-  .all-leaderboards.max-2,
-  .all-leaderboards.max-3,
-  .all-leaderboards.max-4,
-  .all-leaderboards.max-5 {
+  .all-leaderboards.max-2 {
     /* https://stackoverflow.com/a/50137287 */
     grid-template-columns: repeat(2, 50%);
     grid-auto-columns: 50%;
   }
+  .all-leaderboards.max-3,
+  .all-leaderboards.max-4,
+  .all-leaderboards.max-5,
+  .all-leaderboards.max-6 {
+    /* https://stackoverflow.com/a/50137287 */
+    grid-template-columns: repeat(2, 47%);
+    grid-auto-columns: 47%;
+  }
 }
 @media only screen and (min-width: 64.063em){
   /* min-width 1025px, large screens */
-  .all-leaderboards.max-3,
-  .all-leaderboards.max-4,
-  .all-leaderboards.max-5 {
+  .all-leaderboards.max-3 {
     /* https://stackoverflow.com/a/50137287 */
     grid-template-columns: repeat(3, calc(100% / 3));
     grid-auto-columns: calc(100% / 3);
   }
+  .all-leaderboards.max-4,
+  .all-leaderboards.max-5,
+  .all-leaderboards.max-6 {
+    /* https://stackoverflow.com/a/50137287 */
+    grid-template-columns: repeat(3, 30%);
+    grid-auto-columns: 30%;
+  }
 }
 @media only screen and (min-width: 90.063em){
   /* min-width 1441px, xlarge screens */
-  .all-leaderboards.max-4,
-  .all-leaderboards.max-5 {
+  .all-leaderboards.max-4 {
     /* https://stackoverflow.com/a/50137287 */
     grid-template-columns: repeat(4, 25%);
     grid-auto-columns: 25%;
+  }
+  .all-leaderboards.max-5,
+  .all-leaderboards.max-6 {
+    /* https://stackoverflow.com/a/50137287 */
+    grid-template-columns: repeat(4, 22%);
+    grid-auto-columns: 22%;
   }
 }
 @media only screen and (min-width: 120.063em){
@@ -143,40 +188,43 @@ footer .activity-now-and-next .activity-now .activity-name {
     grid-template-columns: repeat(5, 20%);
     grid-auto-columns: 20%;
   }
+  .all-leaderboards.max-6 {
+    /* https://stackoverflow.com/a/50137287 */
+    grid-template-columns: repeat(5, 17%);
+    grid-auto-columns: 17%;
+  }
 }
-/* .leaderboard:first-child {
-  margin-left: 0;
-  padding-left: 0;
-  margin-right: 10px;
-} */
+.leaderboard:first-child {
+  margin-left: 20px;
+  /* padding-left: 0; */
+  /* margin-right: 10px; */
+}
 .leaderboard {
+  margin: 2px 10px;
   display: grid;
   overflow-y: auto;
-  grid-template-rows: 0.75fr 80px 1.75fr;
-  /* border-right: 1px solid rgba(0, 0, 0, 0.15); */
-  /* padding: 0 10px; */
+  grid-template-rows: .75fr 80px 1.75fr;
+  /* border-top: 4px dotted rgba(0,0,0, 0.15); */
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255,255,255,0.1);
+  /* padding-bottom: 10px; */
 }
 .leaderboard:last-child {
-  /* padding-right: 0;
-  margin-left: 10px;
-  margin-right: 0; */
-  border-right: none;
+  /* padding-right: 20px; */
+  /* margin-left: 10px; */
+  margin-right: 20px;
+  /* border-right: none; */
 }
 
 .lb-chart {
   width: 100%;
   height: 100%;
-  /* position: relative; */
-  /* background-color: rgba(0, 0, 0, 0.1); */
+  /* background-color: rgba(0,0,0, 0.03); */
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 .lb-chart svg {
-  /* position:absolute; */
-  /* top:50%; */
-  /* bottom:50%; */
-  /* display:block; */
   width: 100%;
 }
 .lb-title {

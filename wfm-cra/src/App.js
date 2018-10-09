@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import './App.2.css';
 import '../node_modules/normalize.css/normalize.css'
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
     ];
 
     const leaderboards = [
-      leaderboardOne, 
+      this.shuffle(leaderboardOne.slice()), 
       this.shuffle(leaderboardOne.slice()),
       this.shuffle(leaderboardOne.slice())
     ];
@@ -89,29 +90,38 @@ class App extends Component {
   }
   
   render() {
-    const maxLeaderboardsPerPage = Math.min(this.state.leaderboards.length, 5);
+    const maxLeaderboardsPerPage = Math.min(this.state.leaderboards.length, 6);
 
     return (
       <div className="app">
         <header>
           <nav>
             <ul>
-              <li><a className="title" href="#">Today</a></li>
+              <li><a className="title active" href="#">Today</a></li>
+              <li><a className="title" href="#">Planner</a></li>
             </ul>
           </nav>
+          <div className="toolbar title">
+            <i className="icon fas fa-bell"></i>
+            <i className="icon fas fa-cog"></i>
+          </div>
         </header>
         <main>
           <div className={'all-leaderboards max-' + maxLeaderboardsPerPage}>
             {this.state.leaderboards.map((board, i) => {
               return this.getLeaderboard(i);
             })}
+            {/* <div className="leaderboard-spacer"></div> */}
           </div>
         </main>
         <footer>
           <i className="icon schedule-icon far fa-calendar-alt"></i>
           <div className="activity-now-and-next">
-            <div className="activity-now activity-calls-color" style={{width: '80%'}}><span className="activity-name">Calls</span>25 minutes remaining</div>
-            <div className="activity-next"><span className="activity-name">Emails</span>11:00 - 13:00</div>
+            <div className="activity-now activity-calls-color">
+              <span className="activity-name"><b>NOW</b>&nbsp;&nbsp;Calls</span>25 minutes remaining
+              <div className="activity-progress-bar" style={{width: '80%'}}></div>
+            </div>
+            <div className="activity-next"><span className="activity-name"><b>NEXT</b>&nbsp;&nbsp;Emails</span>11:00 - 13:00</div>
           </div>
         </footer>
       </div>
@@ -124,10 +134,17 @@ class App extends Component {
       'Talk Time',
       'Handling Time'
     ];
+
+    const chartValues = [2,5,10,7,3,2,4,4,4];
     
     return (
       <div className="leaderboard" key={boardIndex}>
-        <div className="lb-chart">Chart</div>
+        <div className="lb-chart">
+          <Sparklines data={this.shuffle(chartValues.slice())}>
+            <SparklinesLine style={{ strokeWidth: 2, stroke: "#d1192e", fill: "none" }}/>
+            {/* <SparklinesReferenceLine style={{ stroke: 'white', strokeOpacity: .45, strokeDasharray: '2, 2' }} /> */}
+          </Sparklines>
+        </div>
         <h2 className="lb-title">{boardTitles[boardIndex]}</h2>
         <div className="lb-list">
           {this.getLeaderboardEntries(boardIndex)}
@@ -144,16 +161,12 @@ class App extends Component {
         switch(position) {
           case 1:
             return 'icon gold-color fas fa-trophy';
-            break;
           case 2:
             return 'icon silver-color fas fa-trophy';
-            break;
           case 3:
             return 'icon bronze-color fas fa-medal';
-            break;
           default:
             return (awardIconClasses ? awardIconClasses : '');
-            break;
         }
       })(position, entry.awardIconClasses);
 
