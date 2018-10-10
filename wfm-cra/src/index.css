@@ -10,7 +10,8 @@ body {
   letter-spacing: normal; */
   color: #555;
 
-  --root-bg-color: #e2c663;
+  /*--root-bg-color: #e2c663;*/
+  --root-bg-color: rgba(226, 198, 99, 0.85);
   --black: #373737;
   --dark-grey: #444;
   --mid-grey: #555;

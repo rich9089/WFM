@@ -98,7 +98,7 @@ class App extends Component {
           <nav>
             <ul>
               <li><a className="title active" href="#">Today</a></li>
-              <li><a className="title" href="#">Planner</a></li>
+              {/*<li><a className="title" href="#">Planner</a></li>*/}
             </ul>
           </nav>
           <div className="toolbar title">
@@ -140,7 +140,7 @@ class App extends Component {
     return (
       <div className="leaderboard" key={boardIndex}>
         <div className="lb-chart">
-          <Sparklines data={this.shuffle(chartValues.slice())}>
+          <Sparklines data={this.shuffle(chartValues.slice())} style={{ margin: '10px' }}>
             <SparklinesLine style={{ strokeWidth: 2, stroke: "#d1192e", fill: "none" }}/>
             {/* <SparklinesReferenceLine style={{ stroke: 'white', strokeOpacity: .45, strokeDasharray: '2, 2' }} /> */}
           </Sparklines>
